@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Magic 8 Ball</title>
+<style>
+#eight-ball{
+    width:500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+
+</style>
+</head>
+
+<body>
+    <div id="eight-ball" >
+
+        <div onclick="shake()"> <img src="8ball.svg" alt="eightball" style="width:500px;height:400px;"> 
+        </div>
+
+        <!---<button onclick="shake()">Shake</button>-->
+        <h4 id="question"></h4>
+        <p id="answer"></p>
+    <div>
+<script>
+
+    // Called when we click the shake button 
+    function shake(){
+        // The question we asked
+        var question = prompt("Ask me a question");
+        var questionText = document.getElementById('question');
+        questionText.innerHTML = question;
+
+        // Number of possible answers  
+        var numberOfAnswers = 6;
+
+        // Answers the 8 Ball can return
+        var ball= ["No!!", "Yes!!", "Maybe", "Jus google it", "Ask your mother!", "Not now!"];
+        
+       // Answer returned by our 8 Ball
+        var chosenAnswer = getAnswerNumber(ball.length);        
+        displayAnswer(chosenAnswer);
+
+        // Returns a number based on the number of sides
+        function getAnswerNumber(answerCount){
+            var number = getRandomInt(0,answerCount);
+            return number;
+        } 
+
+        // Returns a random integer between two numbers
+        function getRandomInt(min,max){
+            return Math.floor(Math.random() * (max - min)) + min ;
+        }
+
+        // Show our answer in the document 
+        function displayAnswer(answer) {
+
+            // Access the DOM element we want to to change
+            var ballText = document.getElementById('answer');
+
+            ballText.innerHTML = ball[answer];
+        }
+
+    }
+</script>
+</body>
+
+</html>
